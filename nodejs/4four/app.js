@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 
 const app = express();
 
@@ -7,6 +8,16 @@ app.set('view engine', 'ejs');
 
 // listen for reqests
 app.listen(3000);
+
+// console log when request made
+// app.use((req, res, next) => {
+//     console.log(req.method, req.hostname, req.path);
+//     next();
+// })
+
+// middleware and static files
+app.use(express.static('public')); // static files put in folder public and I can link them
+app.use(morgan('dev')); // console logger
 
 // router
 app.get('/', (req, res) => {
